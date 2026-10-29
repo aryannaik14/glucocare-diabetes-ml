@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reversal Steps - GlucoCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { navy: '#0F172A', brand: '#4F46E5', 'brand-soft': '#EEF2FF', } } } }
+    </script>
+</head>
+<body class="bg-brand-soft/40 text-slate-800 font-sans p-4 sm:p-8">
+    <div class="max-w-4xl mx-auto">
+        <div class="mb-8">
+            <a href="{% url 'diagnosis' %}" class="text-sm font-semibold text-slate-500 hover:text-navy"><i class="fa-solid fa-arrow-left"></i> Back to Assessment</a>
+        </div>
+
+        <div class="mb-10 text-center">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand mb-4 shadow-lg">
+                <i class="fa-solid fa-leaf text-white text-xl"></i>
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-navy tracking-tight mb-4">Steps to Manage & Reverse Type 2 Diabetes</h1>
+            <p class="text-slate-600 max-w-2xl mx-auto">Type 2 diabetes is largely driven by lifestyle and diet. Here are foundational, proactive steps to help improve insulin sensitivity.</p>
+        </div>
+        
+        <div class="grid gap-6 md:grid-cols-2">
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand/20 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-brand"></div>
+                <h3 class="font-bold text-navy text-xl mb-3 flex items-center gap-2"><i class="fa-solid fa-apple-whole text-brand"></i> 1. Dietary Adjustments</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">Limit carbohydrates and refined sugars to reduce blood glucose spikes. Focus on healthy fats, leafy greens, and moderate protein to stabilize insulin levels.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand/20 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-brand"></div>
+                <h3 class="font-bold text-navy text-xl mb-3 flex items-center gap-2"><i class="fa-solid fa-clock text-brand"></i> 2. Intermittent Fasting</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">Give your digestive system a break to allow insulin levels to drop. Begin with a 12-hour overnight fasting window (e.g., 8 PM to 8 AM) and gradually increase.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand/20 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-brand"></div>
+                <h3 class="font-bold text-navy text-xl mb-3 flex items-center gap-2"><i class="fa-solid fa-dumbbell text-brand"></i> 3. Strength & Cardio</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">Skeletal muscle consumes glucose. Build muscle mass through resistance training and engage in daily cardiovascular activities, like brisk walking after meals.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand/20 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-brand"></div>
+                <h3 class="font-bold text-navy text-xl mb-3 flex items-center gap-2"><i class="fa-solid fa-bed text-brand"></i> 4. Optimize Sleep & Stress</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">Poor sleep and high stress increase cortisol levels, which raises blood sugar. Aim for 7-8 hours of quality sleep and practice stress management techniques.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

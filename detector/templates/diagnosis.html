@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assessment - GlucoCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { navy: '#0F172A', brand: '#4F46E5', 'brand-soft': '#EEF2FF', } } } }
+    </script>
+</head>
+<body class="bg-brand-soft/40 text-slate-800 font-sans p-4 sm:p-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-8">
+            <a href="{% url 'home' %}" class="text-sm font-semibold text-slate-500 hover:text-navy"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-heart-pulse text-brand"></i>
+                <span class="font-bold text-navy tracking-tight">GlucoCare</span>
+            </div>
+        </div>
+
+        <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-slate-100">
+            <div class="mb-8">
+                <h2 class="text-3xl font-extrabold text-navy tracking-tight">Type 2 Diabetes Assessment</h2>
+                <p class="text-slate-500 mt-2">Please enter your health metrics below to generate a risk prediction based on our machine learning model.</p>
+            </div>
+            
+            <form method="POST" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% csrf_token %}
+                <div><label class="text-xs font-semibold text-slate-600 uppercase">Pregnancies</label><input type="number" step="any" name="pregnancies" required class="w-full p-2.5 border border-slate-300 rounded-lg mt-1 focus:ring-2 focus:ring-brand focus:outline-none"></div>
+                <div><label class="text-xs font-semibold text-slate-600 uppercase">Glucose Level</label><input type="number" step="any" name="glucose" required class="w-full p-2.5 border border-slate-300 rounded-lg mt-1 focus:ring-2 focus:ring-brand focus:outline-none"></div>
+                <div><label class="text-xs font-semibold text-slate-600 uppercase">Blood Pressure</label><input type="number" step="any" name="blood_pressure" required class="w-full p-2.5 border border-slate-300 rounded-lg mt-1 focus:ring-2 focus:ring-brand focus:outline-none"></div>
+                <div><label class="text-xs font-semibold text-slate-600 uppercase">Skin Thickness</label><input type="number" step="any" name="skin_thickness" required class="w-full p-2.5 border border-slate-300 rounded-lg mt-1 focus:ring-2 focus:ring-brand focus:outline-none"></div>
+                <div><label class="text-xs font-semibold text-slate-600 uppercase">Insulin Level</label><input type="number" step="any" name="insulin" required class="w-full p-2.5 border border-slate-300 rounded-lg mt-1 focus:ring-2 focus:ring-brand focus:outline-none"></div>
+                <div><label class="text-xs font-semibold text-slate-600 uppercase">Family History (0=No, 1=Yes)</label><input type="number" step="any" name="family_history" required class="w-full p-2.5 border border-slate-300 rounded-lg mt-1 focus:ring-2 focus:ring-brand focus:outline-none"></div>
+                <div><label class="text-xs font-semibold text-slate-600 uppercase">BMI</label><input type="number" step="any" name="bmi" required class="w-full p-2.5 border border-slate-300 rounded-lg mt-1 focus:ring-2 focus:ring-brand focus:outline-none"></div>
+                <div><label class="text-xs font-semibold text-slate-600 uppercase">Cortisol Level</label><input type="number" step="any" name="cortisol_level" required class="w-full p-2.5 border border-slate-300 rounded-lg mt-1 focus:ring-2 focus:ring-brand focus:outline-none"></div>
+                <div><label class="text-xs font-semibold text-slate-600 uppercase">Hormonal Issue (0=No, 1=Yes)</label><input type="number" step="any" name="hormonal_imbalance" required class="w-full p-2.5 border border-slate-300 rounded-lg mt-1 focus:ring-2 focus:ring-brand focus:outline-none"></div>
+                <div><label class="text-xs font-semibold text-slate-600 uppercase">Sleep Cycle (0=Bad, 1=Good)</label><input type="number" step="any" name="sleep_cycle" required class="w-full p-2.5 border border-slate-300 rounded-lg mt-1 focus:ring-2 focus:ring-brand focus:outline-none"></div>
+                <div><label class="text-xs font-semibold text-slate-600 uppercase">Lifestyle (0=Lazy.. 2=Active)</label><input type="number" step="any" name="lifestyle" required class="w-full p-2.5 border border-slate-300 rounded-lg mt-1 focus:ring-2 focus:ring-brand focus:outline-none"></div>
+                <div><label class="text-xs font-semibold text-slate-600 uppercase">Diabetes Pedigree</label><input type="number" step="any" name="dpf" required class="w-full p-2.5 border border-slate-300 rounded-lg mt-1 focus:ring-2 focus:ring-brand focus:outline-none"></div>
+                <div><label class="text-xs font-semibold text-slate-600 uppercase">Age</label><input type="number" step="any" name="age" required class="w-full p-2.5 border border-slate-300 rounded-lg mt-1 focus:ring-2 focus:ring-brand focus:outline-none"></div>
+                
+                <div class="col-span-1 sm:col-span-2 lg:col-span-3 mt-4 border-t border-slate-100 pt-6">
+                    <button type="submit" class="w-full bg-brand text-white p-4 rounded-xl font-bold hover:bg-indigo-700 transition shadow-md flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-microscope"></i> Run Diagnosis Engine
+                    </button>
+                </div>
+            </form>
+
+            {% if result %}
+            <div class="mt-10 p-6 bg-brand-soft border-2 border-brand/30 rounded-2xl">
+                <h3 class="font-extrabold text-xl text-navy mb-2">Assessment Result: {{ result }}</h3>
+                {% if "Positive" in result %}
+                    <p class="text-sm text-slate-600 mb-5">Your assessment indicates a higher probability of Type 2 Diabetes risk factors.</p>
+                    <a href="{% url 'reversal' %}" class="inline-flex items-center gap-2 bg-navy text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-slate-800 transition">
+                        View Reversal & Management Steps <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                {% else %}
+                    <p class="text-sm text-slate-600">Your assessment indicates a lower probability of Type 2 Diabetes risk factors. Maintain a healthy lifestyle!</p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

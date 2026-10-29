@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In - GlucoCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { navy: '#0F172A', brand: '#4F46E5', 'brand-soft': '#EEF2FF', } } } }
+    </script>
+</head>
+<body class="bg-brand-soft/40 flex justify-center items-center h-screen font-sans">
+    <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100 w-full max-w-md">
+        <div class="text-center mb-8">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-navy mb-4 shadow-lg shadow-navy/25">
+                <i class="fa-solid fa-heart-pulse text-white text-xl"></i>
+            </span>
+            <h2 class="text-2xl font-bold text-navy">Welcome Back</h2>
+            <p class="text-sm text-slate-500 mt-1">Sign in to GlucoCare</p>
+        </div>
+        <form method="POST" class="space-y-5">
+            {% csrf_token %}
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Username</label>
+                <input type="text" name="username" required class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand transition">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                <input type="password" name="password" required class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand transition">
+            </div>
+            <button type="submit" class="w-full bg-brand text-white p-3 rounded-xl font-bold hover:bg-indigo-700 transition mt-4 shadow-md">Sign In</button>
+        </form>
+        <div class="mt-6 text-center">
+            <a href="{% url 'home' %}" class="text-sm text-slate-500 hover:text-navy">← Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
